@@ -10,7 +10,7 @@ import { Diagnosis, Patient } from './types';
 import PatientListPage from './PatientListPage';
 import PatientPage from './PatientPage';
 
-const App = () => {=
+const App = () => {
   const [, dispatch] = useStateValue();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
