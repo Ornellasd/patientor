@@ -16,8 +16,6 @@ const App = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    void axios.get<void>(`${apiBaseUrl}/ping`);
-
     const fetchPatientList = async () => {
       setIsLoading(true);
       try {
