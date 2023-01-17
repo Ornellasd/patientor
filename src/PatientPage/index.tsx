@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import { apiBaseUrl } from '../constants';
 import { Patient } from '../types';
 import { useStateValue, setPatient } from '../state';
 import { useParams } from 'react-router';
@@ -10,6 +9,8 @@ import AddEntryModal from '../AddEntryModal';
 import { EntryFormValues } from '../AddEntryModal/AddEntryForm';
 
 const PatientPage = () => {
+  const apiBaseUrl: string = process.env.REACT_APP_BACKEND_URL || '';
+
   const [{ patient }, dispatch] = useStateValue();
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -29,7 +30,7 @@ const PatientPage = () => {
           `${apiBaseUrl}/patients/${id}`
         );
         dispatch(setPatient(patientInfoFromApi));
-      } catch(e) {
+      } catch (e: unknown) {
         console.error(e);
       }
     };
@@ -55,13 +56,14 @@ const PatientPage = () => {
       );
       dispatch(setPatient(newEntry));
       closeModal();
-    } catch(e) {
+    } catch (e) {
+      // @ts-expect-error error unknown
       console.error(e.response?.data || 'Unknown Error');
     }
   };
 
-  if(!patient) return null;
-  
+  if (!patient) return null;
+
   return (
     <div className="Patient-Details">
       <h2>{patient.name} <Icon name={genderIcon()} /></h2>
@@ -76,10 +78,10 @@ const PatientPage = () => {
           )}
         </div>
       }
-      <AddEntryModal 
+      <AddEntryModal
         modalOpen={modalOpen}
         onSubmit={submitNewEntry}
-        onClose={closeModal} 
+        onClose={closeModal}
       />
     </div>
   );

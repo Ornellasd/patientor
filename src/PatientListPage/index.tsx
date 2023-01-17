@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { PatientFormValues } from '../AddPatientModal/AddPatientForm';
 import AddPatientModal from '../AddPatientModal';
 import { Patient } from '../types';
-import { apiBaseUrl } from '../constants';
 import HealthRatingBar from '../components/HealthRatingBar';
 import { useStateValue, addPatient } from '../state';
 
@@ -15,6 +14,8 @@ interface Props {
 }
 
 const PatientListPage = ({ isLoading }: Props) => {
+  const apiBaseUrl: string = process.env.REACT_APP_BACKEND_URL || '';
+
   const [{ patients }, dispatch] = useStateValue();
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -36,12 +37,14 @@ const PatientListPage = ({ isLoading }: Props) => {
       dispatch(addPatient(newPatient));
       closeModal();
     } catch (e) {
+      // @ts-expect-error error unknown
       console.error(e.response?.data || 'Unknown Error');
+      // @ts-expect-error error unknown
       setError(e.response?.data?.error || 'Unknown error');
     }
   };
 
-  if(isLoading) {
+  if (isLoading) {
     return (
       <Loader active inline="centered" />
     );
