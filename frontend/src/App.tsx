@@ -10,11 +10,10 @@ import PatientListPage from './PatientListPage';
 import PatientPage from './PatientPage';
 
 const App = () => {
-  const apiBaseUrl: string = process.env.REACT_APP_BACKEND_URL || '';
-  console.log(apiBaseUrl, 'api working??');
-
   const [, dispatch] = useStateValue();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  const apiBaseUrl: string = process.env.REACT_APP_BACKEND_URL || '';
 
   React.useEffect(() => {
     const fetchPatientList = async () => {
