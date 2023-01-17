@@ -1,1 +1,1 @@
-export const apiBaseUrl: string = 'https://patientor-backend-obmk.onrender.com/api';
+export const apiBaseUrl = 'https://patientor-backend-obmk.onrender.com/api';
