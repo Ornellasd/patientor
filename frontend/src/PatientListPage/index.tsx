@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Container, Table, Button, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-
+import { apiBaseUrl } from '../constants';
 import { PatientFormValues } from '../AddPatientModal/AddPatientForm';
 import AddPatientModal from '../AddPatientModal';
 import { Patient } from '../types';
@@ -14,8 +14,6 @@ interface Props {
 }
 
 const PatientListPage = ({ isLoading }: Props) => {
-  const apiBaseUrl: string = process.env.REACT_APP_BACKEND_URL || '';
-
   const [{ patients }, dispatch] = useStateValue();
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);

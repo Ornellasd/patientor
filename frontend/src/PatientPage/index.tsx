@@ -4,13 +4,12 @@ import { Patient } from '../types';
 import { useStateValue, setPatient } from '../state';
 import { useParams } from 'react-router';
 import { Icon, SemanticICONS, Button } from 'semantic-ui-react';
+import { apiBaseUrl } from '../constants';
 import EntryDetails from './Entry';
 import AddEntryModal from '../AddEntryModal';
 import { EntryFormValues } from '../AddEntryModal/AddEntryForm';
 
 const PatientPage = () => {
-  const apiBaseUrl: string = process.env.REACT_APP_BACKEND_URL || '';
-
   const [{ patient }, dispatch] = useStateValue();
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);

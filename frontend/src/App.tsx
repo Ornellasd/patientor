@@ -3,17 +3,16 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Button, Divider, Header, Container } from 'semantic-ui-react';
 
+import { apiBaseUrl } from './constants';
 import { setDiagnoses, setPatients, useStateValue } from './state';
 import { Diagnosis, Patient } from './types';
 
 import PatientListPage from './PatientListPage';
 import PatientPage from './PatientPage';
 
-const App = () => {
+const App = () => {=
   const [, dispatch] = useStateValue();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-
-  const apiBaseUrl: string = process.env.REACT_APP_BACKEND_URL || '';
 
   React.useEffect(() => {
     const fetchPatientList = async () => {
